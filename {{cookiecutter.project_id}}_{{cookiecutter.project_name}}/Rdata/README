@@ -1,0 +1,4 @@
+Files processed and serialized for R are stored here. These should be cached
+values for use interally to the script, but aren't automatically cached by
+knitr. For data that is a defined output from the script for use by external
+people and programs use the export directory.

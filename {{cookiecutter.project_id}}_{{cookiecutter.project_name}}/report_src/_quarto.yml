@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: ../report
+
+website:
+  title: "{{cookiecutter.project_id}} {{cookiecutter.project_name}}"
+  favicon: /img/logo.png
+  margin-header: |
+    ![Interline Therapeutics](/img/logo.png)
+  body-footer: |
+    *Interline Therapeutics Confidential Information*
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - index.qmd
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    code-fold: true
+    embed-resources: true
+    execute:
+      echo: false
+      cache: true
+      autodep: true
+      fig-width: 11.25
+      fig-height: 5.97647
+      fig-dpi: 96

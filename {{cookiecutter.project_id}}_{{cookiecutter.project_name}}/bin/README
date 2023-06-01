@@ -1,0 +1,3 @@
+Analysis-specific utility scripts beyond the main report generating scripts go
+here. Compiled binaries also be installed here. If direnv is being used the
+.envrc file can be enabled to add this directory to your shell path.

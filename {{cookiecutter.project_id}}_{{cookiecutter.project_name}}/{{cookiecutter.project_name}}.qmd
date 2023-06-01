@@ -1,0 +1,101 @@
+---
+title: "{{cookiecutter.project_name}}"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 5
+    code-fold: true
+    execute:
+      echo: true
+      cache: true
+      autodep: true
+    fig-width: 11.25
+    fig-height: 5.97647
+    fig-dpi: 96
+---
+
+```{r load-libraries}
+#| cache: false
+#| message: false
+
+## Wrap this so we don't leak variables to the working namespace. We'll use the
+## dot prefix convention that the tidyverse uses
+.top_level <- (function() {
+    cur_dir <- path.expand(getwd())
+    while (TRUE) {
+        if (".git" %in% dir(cur_dir, all.files = TRUE)) {
+            return(cur_dir)
+        }
+        next_up <- dirname(cur_dir)
+        if (next_up == cur_dir) {
+            stop("Couldn't find .git directory")
+        }
+        cur_dir <- next_up
+    }
+})()
+
+renv::activate(.top_level)
+
+library("tidyverse")
+suppressMessages(library("magrittr"))
+
+source(file.path(.top_level, "analysis", "common", "theme_dpn_bw.R"))
+source(file.path(.top_level, "analysis", "common", "sized_ggsave.R"))
+
+## Rcpp::sourceCpp(file.path(.top_level,
+##                           "analysis/common/src/sort_combn_mat.cpp"))
+## Rcpp::sourceCpp(file.path(.top_level,
+##                           "analysis/common/src/paste_combn_mat.cpp"))
+
+```
+
+```{r init-no-cache}
+#| cache: false
+## Initialize things that we don't want knitr to cache here. That includes
+## things like setting up the workspace and initializing database handles
+
+## Wrap this so we don't leak variables to the working namespace
+(function() {
+    for (project_dir in c("data", "export", "figure", "Rdata")) {
+        if (!dir.exists(project_dir)) {
+            dir.create(project_dir)
+        }
+    }
+})()
+
+```
+
+```{r metadata}
+
+experiment_id <- "{{cookiecutter.project_id}}"
+analysis_fname_pfx <- "{{cookiecutter.project_name}}"
+figure_pfx <- file.path("figure", analysis_fname_pfx)
+export_pfx <- file.path("export", analysis_fname_pfx)
+
+```
+
+```{r infrastructure}
+
+```
+
+```{r data}
+#| cache: true
+
+packages_fpath <- file.path(.top_level, "packages")
+edl_fpath <- file.path(packages_fpath, "EDL")
+
+```
+
+
+
+
+```{r cleanup-no-cache}
+#| cache: false
+
+## Cleanup that we want executed every time, so we don't want knitr to cache it.
+## This includes things like closing database handles and files
+
+## renv::snapshot()
+
+```

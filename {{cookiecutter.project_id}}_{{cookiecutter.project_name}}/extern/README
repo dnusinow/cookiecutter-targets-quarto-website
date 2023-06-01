@@ -1,0 +1,6 @@
+Files created by programs external to the scripts contained in the analysis
+directory should go here. For example, if an exported data file is manually
+processed through an external program or website (e.g. Cytoscape) exported files
+from that external program (e.g. manually created network plots) should be
+placed in this directory to clearly indicate that they were not generated from
+the code contained in this repository.

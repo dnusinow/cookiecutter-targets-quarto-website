@@ -1,0 +1,13 @@
+.DS_Store
+.idea
+*.log
+tmp/
+*_files
+*_cache
+_targets
+/.quarto/
+nohup.out
+run.Rout
+report
+*~undo-tree~
+.RData

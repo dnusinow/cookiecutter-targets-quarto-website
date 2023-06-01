@@ -1,0 +1,43 @@
+```{r r-prelude}
+#| cache: false
+#| message: false
+
+## Wrap this so we don't leak variables to the working namespace. We'll use the
+## dot prefix convention that the tidyverse uses
+.top_level <- (function() {
+    cur_dir <- path.expand(getwd())
+    while (TRUE) {
+        if (".git" %in% dir(cur_dir, all.files = TRUE)) {
+            return(cur_dir)
+        }
+        next_up <- dirname(cur_dir)
+        if (next_up == cur_dir) {
+            stop("Couldn't find .git directory")
+        }
+        cur_dir <- next_up
+    }
+})()
+
+renv::activate(.top_level)
+library("targets")
+library("tidyverse")
+library("magrittr")
+library("ggplot2")
+library("ggrepel")
+
+source(file.path(.top_level, "analysis", "common", "theme_dpn_bw.R"))
+
+```
+
+```{r r-data-prelude}
+#| cache: false
+
+```
+
+```{ojs ojs-prelude}
+//|echo: false
+//|cache: false
+
+
+```
+

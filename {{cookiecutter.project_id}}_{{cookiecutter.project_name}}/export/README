@@ -1,0 +1,4 @@
+Processed data for use in external programs or by other people should be written
+to this directory. This is not meant for plots, as automated figure creation by
+knitr will go in to the figure directory automatically, so manually exported
+figures should also go there.
