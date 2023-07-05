@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import quilt3 as q3
+import json
+
+fpaths = {}
+
+quilt_reg = json.load(open("quilt_registry.json"))
+
+p = q3.Package.browse(quilt_reg["name"],
+                      registry=quilt_reg["registry"])
+p["msstats"].fetch("data/msstats")
+fpaths["msstats"] = "data/msstats"
+
+print(json.dumps(fpaths, indent = 4))

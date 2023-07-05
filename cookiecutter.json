@@ -3,5 +3,6 @@
     "email": "dnusinow@interlinetx.com",
     "project_name": "Targets + Quarto Website",
     "program": "ProgEnabl",
-    "project_id": "EXP"
+    "project_id": "EXP",
+    "registry": "s3://interline-proteomics-analysis"
 }

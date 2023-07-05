@@ -1,3 +1,6 @@
 Analysis-specific utility scripts beyond the main report generating scripts go
 here. Compiled binaries also be installed here. If direnv is being used the
 .envrc file can be enabled to add this directory to your shell path.
+
+The `fetch_data` and `push_data scripts` are meant to be easily editable to
+customize the structure of the quilt package tied to this analysis.

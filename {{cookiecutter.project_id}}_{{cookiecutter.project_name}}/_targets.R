@@ -24,6 +24,7 @@ tar_option_set(
   packages = c("tibble",
                "tidyverse",
                "glue",
+               "jsonlite",
                "magrittr"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
@@ -41,7 +42,15 @@ source(file.path(.top_level, "analysis", "common", "theme_dpn_bw.R"))
 
 # Replace the target list below with your own:
 list(
-  tar_quarto(report_site,
-             "report_src",
-             quiet = TRUE)
+    ## fetch_targets, # uncomment to fetch
+    tar_quarto(report_site,
+               "report_src",
+             quiet = TRUE),
+    ## Replace this message with whatever you want the quilt commit message to
+    ## be
+    tar_target(
+        quilt_message,
+        "Data analysis for {{cookiecutter.program}}/{{cookiecutter.project_id}}"
+    )
+    ## push_targets # uncomment to push
 )
