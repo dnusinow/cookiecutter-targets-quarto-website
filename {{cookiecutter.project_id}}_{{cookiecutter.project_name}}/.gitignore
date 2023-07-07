@@ -7,6 +7,7 @@ tmp/
 _targets
 /.quarto/
 nohup.out
+packages
 run.Rout
 report
 *~undo-tree~
