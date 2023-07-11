@@ -5,18 +5,18 @@ import json
 import sys
 
 quilt_reg = json.load(open("quilt_registry.json"))
-parent = "analysis"
+parent = "analysis/"
 
 p = q3.Package.browse(quilt_reg["name"],
                       registry=quilt_reg["registry"])
 
 for d in ["data", "export", "extern", "figure", "report"]:
-    dest = f'{parent}/{d}'
+    dest = f'{parent}{d}'
     p.set_dir(dest, d)
 
-p.set(f'{parent}/run.Rout', "run.Rout")
-p.set(f'{parent}/README.md', "README.md")
-p.set(f'{parent}/quilt_summarize.json', "quilt_summarize.json")
+p.set(f'{parent}run.Rout', "run.Rout")
+p.set(f'{parent}README.md', "README.md")
+p.set(f'{parent}quilt_summarize.json', "quilt_summarize.json")
 
 if len(sys.argv) > 1:
     quilt_msg = sys.argv[1]

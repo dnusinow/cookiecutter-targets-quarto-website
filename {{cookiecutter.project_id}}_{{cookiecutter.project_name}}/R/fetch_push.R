@@ -16,9 +16,15 @@ fetch_targets <- list(
 
 push_data <- function(script_fpath, ..., msg = NULL) {
     if (!is.null(message)) {
-        system2(script_fpath, args = msg)
+        cmdval <- system2(script_fpath, args = shQuote(msg))
+        if (cmdval != 0L) {
+            stop("Error pushing with return value: ", cmdval)
+        }
     } else {
-        system2(script_fpath)
+        cmdval <- system2(script_fpath)
+        if (cmdval != 0L) {
+            stop("Error pushing with return value: ", cmdval)
+        }
     }
 }
 
@@ -28,6 +34,10 @@ push_targets <- list(
         "./bin/push_data"
     ),
     tar_target(
+        quilt_message,
+        "Data analysis"
+    ),
+    tar_target(
         pushed,
         push_data(push_data_script,
                   ## Add any targets to this list as a way to tie the push_data
@@ -35,6 +45,6 @@ push_targets <- list(
                   ## ignored by the push_data() function
                   list(
                   ),
-                  message = quilt_message)
+                  msg = quilt_message)
     )
 )
