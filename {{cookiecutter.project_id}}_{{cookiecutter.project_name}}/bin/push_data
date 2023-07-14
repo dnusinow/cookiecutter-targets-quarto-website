@@ -28,4 +28,8 @@ p.push(name = quilt_reg["name"],
        message = quilt_msg,
        workflow = quilt_reg["workflow"])
 
-# TODO: Implement report pushing to an S3 bucket
+# http://bioinformatics-reports.s3-website-us-west-2.amazonaws.com/{{cookiecutter.program}}/{{cookiecutter.project_id}}
+
+# if os.path.exists("report"):
+#     subprocess.run(["aws", "--profile=dev", "s3", "sync", "report", \
+#                     f"s3://bioinformatics-reports/{quilt_reg['name']}/"])
