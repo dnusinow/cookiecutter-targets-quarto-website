@@ -12,7 +12,8 @@
     }
 })()
 
-renv::activate(.top_level)
+options(renv.config.synchronized.check = FALSE)
+renv::load(.top_level)
 
 library(targets)
 library(tarchetypes)
