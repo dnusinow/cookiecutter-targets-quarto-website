@@ -14,7 +14,8 @@
     }
 })()
 
-renv::activate(.top_level)
+options(renv.config.synchronized.check = FALSE)
+renv::load(.top_level)
 
 # This is a helper script to run the pipeline.
 # Choose how to execute the pipeline below.
