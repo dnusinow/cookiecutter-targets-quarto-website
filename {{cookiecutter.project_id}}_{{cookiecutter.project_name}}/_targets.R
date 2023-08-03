@@ -47,11 +47,5 @@ list(
     tar_quarto(report_site,
                "report_src",
              quiet = TRUE),
-    ## Replace this message with whatever you want the quilt commit message to
-    ## be
-    tar_target(
-        quilt_message,
-        "Data analysis for {{cookiecutter.program}}/{{cookiecutter.project_id}}"
-    )
-    ## push_targets # uncomment to push
+    push_targets
 )
