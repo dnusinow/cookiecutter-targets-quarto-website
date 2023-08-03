@@ -15,4 +15,5 @@ fetch_targets <- list(
 )
 
 ## Any targets you want to add at the end of a build before pushing
-push_targets <- list
+push_targets <- list(
+)
