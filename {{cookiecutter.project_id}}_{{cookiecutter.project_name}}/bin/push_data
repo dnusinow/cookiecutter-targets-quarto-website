@@ -3,6 +3,8 @@
 import quilt3 as q3
 import json
 import sys
+import os
+import subprocess
 
 quilt_reg = json.load(open("quilt_registry.json"))
 parent = "analysis/"
