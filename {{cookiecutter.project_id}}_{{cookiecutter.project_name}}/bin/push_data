@@ -19,6 +19,7 @@ for d in ["data", "export", "extern", "figure", "report"]:
 p.set(f'{parent}run.Rout', "run.Rout")
 p.set(f'{parent}README.md', "README.md")
 p.set(f'{parent}quilt_summarize.json', "quilt_summarize.json")
+p.set(f'{parent}quilt_packages.json', "quilt_packages.json")
 
 if len(sys.argv) > 1:
     quilt_msg = sys.argv[1]

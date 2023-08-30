@@ -4,12 +4,31 @@ import quilt3 as q3
 import json
 
 fpaths = {}
+packages = []
+
+def qpull(registry, name, paths, top_hash = None):
+    p = q3.Package.browse(name, registry = registry)
+
+    for path in paths:
+        p[path].fetch(f"packages/{path}")
+        fpaths[path] = f"packages/{path}"
+
+    cur_package = {
+        "registry": quilt_reg["registry"],
+        "name": quilt_reg["name"],
+        "top_hash": p.top_hash,
+        "files": paths
+    }
+    packages.append(cur_package)
+
 
 quilt_reg = json.load(open("quilt_registry.json"))
 
-p = q3.Package.browse(quilt_reg["name"],
-                      registry=quilt_reg["registry"])
-p["msstats"].fetch("data/msstats")
-fpaths["msstats"] = "data/msstats"
+qpull(quilt_reg["registry"],
+      quilt_reg["name"],
+      ["msstats", "normalized"])
+
+with open('quilt_packages.json', 'w') as f:
+  json.dump(packages, f, ensure_ascii = False, indent = 4)
 
 print(json.dumps(fpaths, indent = 4))
