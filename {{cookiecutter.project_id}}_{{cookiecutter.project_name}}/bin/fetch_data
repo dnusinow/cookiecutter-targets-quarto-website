@@ -10,8 +10,8 @@ def qpull(registry, name, paths, top_hash = None):
     p = q3.Package.browse(name, registry = registry)
 
     for path in paths:
-        p[path].fetch(f"packages/{path}")
-        fpaths[path] = f"packages/{path}"
+        p[path].fetch(f"packages/{name}/{path}")
+        fpaths[path] = f"packages/{name}/{path}"
 
     cur_package = {
         "registry": quilt_reg["registry"],
