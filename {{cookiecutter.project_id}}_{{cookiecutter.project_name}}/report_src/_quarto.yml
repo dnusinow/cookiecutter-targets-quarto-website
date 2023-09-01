@@ -14,7 +14,7 @@ website:
     search: true
     contents:
       - index.qmd
-      - about.qmd
+      - quilt.qmd
 
 format:
   html:

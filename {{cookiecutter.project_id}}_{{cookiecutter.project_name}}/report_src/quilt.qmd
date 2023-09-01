@@ -1,0 +1,51 @@
+---
+title: Quilt Packages
+---
+
+{{< include _prelude.qmd >}}
+
+```{r local-libs}
+
+library(htmltools)
+
+```
+
+The Quilt packages used in this analysis are documented below.
+
+```{r quilt-packages}
+#| results: asis
+
+itx_quilt_browser_pfx <- "https://quilt.intrln.io/b/"
+pkgs_l <- list()
+
+if (file.exists("quilt_packages.json")) {
+    pkgs_l <- jsonlite::read_json("quilt_packages.json")
+}
+
+for (pkg_rec in pkgs_l) {
+    bucket <- gsub("^s3:\\/\\/", "", pkg_rec$registry)
+    itx_quilt_browser_url <- paste0(itx_quilt_browser_pfx,
+                                    bucket,
+                                    "/packages/")
+
+    quilt_package_browser_url <- paste0(itx_quilt_browser_url,
+                                        pkg_rec$name,
+                                        "/tree/",
+                                        pkg_rec$top_hash)
+    
+    tags$ul(
+      tags$li(tags$a(pkg_rec$name, href = quilt_package_browser_url),
+        tags$ul(tags$li(paste0("Package Version: ", pkg_rec$top_hash)),
+                map(pkg_rec$files,
+                    function(f) {
+                        url <- paste0(quilt_package_browser_url, "/", f)
+                        tags$li(tags$a(f, href = url))
+               }) 
+        )
+      )
+    ) %>%
+    print()
+}
+
+```
+

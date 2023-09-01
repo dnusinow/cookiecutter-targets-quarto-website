@@ -9,24 +9,30 @@ packages = []
 def qpull(registry, name, paths, top_hash = None):
     p = q3.Package.browse(name, registry = registry)
 
+    browser_paths = []
     for path in paths:
         p[path].fetch(f"packages/{name}/{path}")
-        fpaths[path] = f"packages/{name}/{path}"
 
+        if p[path].__class__.__name__ == "PackageEntry":
+            browser_paths.append(path)
+        elif p[path].__class__.__name__ == "Package":
+            browser_paths.append(path + "/")
+        else:
+            raise Exception("Unknown package class for file" + path)
+
+    fpaths[path] = f"packages/{name}/{path}"
     cur_package = {
         "registry": quilt_reg["registry"],
         "name": quilt_reg["name"],
         "top_hash": p.top_hash,
-        "files": paths
+        "files": browser_paths
     }
     packages.append(cur_package)
 
 
 quilt_reg = json.load(open("quilt_registry.json"))
 
-qpull(quilt_reg["registry"],
-      quilt_reg["name"],
-      ["msstats", "normalized"])
+qpull(quilt_reg["registry"], quilt_reg["name"], ["normalized"])
 
 with open('quilt_packages.json', 'w') as f:
   json.dump(packages, f, ensure_ascii = False, indent = 4)
