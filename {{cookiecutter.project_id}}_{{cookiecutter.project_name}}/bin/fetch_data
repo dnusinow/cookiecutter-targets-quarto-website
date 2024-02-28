@@ -20,7 +20,8 @@ def qpull(registry, name, paths, top_hash = None):
         else:
             raise Exception("Unknown package class for file" + path)
 
-    fpaths[path] = f"packages/{name}/{path}"
+        fpaths[path] = f"packages/{name}/{path}"
+
     cur_package = {
         "registry": quilt_reg["registry"],
         "name": quilt_reg["name"],
