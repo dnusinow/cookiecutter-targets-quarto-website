@@ -1,8 +1,8 @@
 {
     "full_name": "David Nusinow",
-    "email": "dnusinow@interlinetx.com",
+    "email": "david.nusinow@orionmedicines.com",
     "project_name": "Targets + Quarto Website",
-    "program": "ProgEnabl",
+    "program": "TechDev",
     "project_id": "EXP",
-    "registry": "s3://interline-proteomics-analysis"
+    "registry": "ob-warehouse-inflight-us-west-2-377686866371"
 }

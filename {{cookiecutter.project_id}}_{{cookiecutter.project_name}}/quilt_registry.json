@@ -1,5 +1,5 @@
 {
     "name": "{{cookiecutter.program}}/{{cookiecutter.project_id}}",
     "registry": "{{cookiecutter.registry}}",
-    "workflow": "quilt-experiment-universal"
+    "workflow": "experiment"
 }
