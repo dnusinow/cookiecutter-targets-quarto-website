@@ -41,6 +41,16 @@ options(clustermq.scheduler = "multicore")
 tar_source()
 source(file.path(.top_level, "analysis", "common", "theme_dpn_bw.R"))
 
+save_csv <- function(x, fpath) {
+    readr::write_csv(x, fpath)
+    fpath
+}
+
+save_parquet <- function(x, fpath) {
+    arrow::write_parquet(x, fpath)
+    fpath
+}
+
 # Replace the target list below with your own:
 list(
     ## fetch_targets, # uncomment to fetch
