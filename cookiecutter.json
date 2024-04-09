@@ -4,5 +4,5 @@
     "project_name": "Targets + Quarto Website",
     "program": "TechDev",
     "project_id": "EXP",
-    "registry": "ob-warehouse-inflight-us-west-2-377686866371"
+    "registry": "s3://ob-warehouse-inflight-us-west-2-377686866371"
 }
