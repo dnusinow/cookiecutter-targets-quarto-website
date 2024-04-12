@@ -34,8 +34,13 @@ def qpull(registry, name, paths, top_hash = None):
 
 quilt_reg = json.load(open("quilt_registry.json"))
 
-qpull(quilt_reg["registry"], quilt_reg["name"],
-      {"normdir", "normalized"})
+# Fetch pre-existing data from the quilt package and put it in the data directory
+p = q3.Package.browse(quilt_reg["name"], registry=quilt_reg["registry"])
+p["data"].fetch(dest = "data")
+
+# Fetch data from packages outside this one
+# qpull(quilt_reg["registry"], quilt_reg["name"],
+#       {"normdir", "normalized"})
 
 with open('quilt_packages.json', 'w') as f:
   json.dump(packages, f, ensure_ascii = False, indent = 4)
